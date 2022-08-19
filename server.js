@@ -14972,7 +14972,7 @@ var manifest = {
 ]
 };
 
-let indexHTML = '/Users/elinaresgaona/Documents/dev/heatmap/solid/dist/public/index.html';
+let indexHTML = '/Users/elinaresgaona/Documents/dev/heatmap/dist/public/index.html';
 
 async function entry({ request, env }) {
   let text = await readFile(indexHTML, "utf8");
