@@ -74,8 +74,7 @@ export function Controls() {
   }
 
   const handleChange = (option: string, checked: boolean, color: Color): void => {
-    reset();
-    
+
     switch(option) {
       case 'Sequías cíclicas':
         setCheckeds('sequia', checked);
@@ -123,7 +122,7 @@ export function Controls() {
       <form class="control-form">
         <For each={controls}>{({control, color}) =>
           <label>
-            <input type="radio" name="graphics" onchange={(e) => handleChange(control, e.target.checked, color)}/>
+            <input type="checkbox" name="graphics" onchange={(e) => handleChange(control, e.target.checked, color)}/>
             {control}
           </label>
         }</For>
