@@ -2393,10 +2393,10 @@ delegateEvents(["click"]);
 
 const routesConfig = {
   routes: [{
-    component: lazy(() => __vitePreload(() => import('./_...404_.09e5ff8c.js'),true?[]:void 0)),
+    component: lazy(() => __vitePreload(() => import('./_...404_.6fcad0bf.js'),true?[]:void 0)),
     path: "/*404"
   }, {
-    component: lazy(() => __vitePreload(() => import('./index.a714cc48.js'),true?["assets/index.a714cc48.js","assets/index.c171aca2.css"]:void 0)),
+    component: lazy(() => __vitePreload(() => import('./index.eebbe02b.js'),true?["assets/index.eebbe02b.js","assets/index.c171aca2.css"]:void 0)),
     path: "/"
   }],
   routeLayouts: {
