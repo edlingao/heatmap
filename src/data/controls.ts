@@ -16,27 +16,27 @@ export default [
     },
   },
   {
-    control: 'Datos de precipitación de Mayo',
+    control: 'Datos de precipitación de Mayo, Junio y Julio',
     color: {
       r: 143,
       g: 0,
       b: 0,
     },
   },
-  {
-    control: 'Datos de precipitación de Junio',
-    color: {
-      r: 143,
-      g: 0,
-      b: 0,
-    },
-  },
-  {
-    control: 'Datos de precipitación de Julio',
-    color: {
-      r: 143,
-      g: 0,
-      b: 0,
-    },
-  },
+  // {
+  //   control: 'Datos de precipitación de Junio',
+  //   color: {
+  //     r: 143,
+  //     g: 0,
+  //     b: 0,
+  //   },
+  // },
+  // {
+  //   control: 'Datos de precipitación de Julio',
+  //   color: {
+  //     r: 143,
+  //     g: 0,
+  //     b: 0,
+  //   },
+  // },
 ];

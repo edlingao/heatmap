@@ -14,10 +14,9 @@ export function Controls() {
   const [checkeds, setCheckeds] = createStore({
     "sequia": false,
     "indemnizados": false,
-    "may": false,
-    "jun": false,
-    "jul": false,
+    "month": false,
   })
+
   const reset = () =>
     document.querySelectorAll('path[name]').forEach( path => {
       path.classList.remove('may', 'june', 'jul');
@@ -42,16 +41,17 @@ export function Controls() {
       path.style.fill = "transparent";
       return;
     }
-
+    path.style.opacity = 1;
     path.style.fill = finalColor;
   }
 
-  const changeSVGColor = (name: string, intensity: number, media: number, checked: boolean, color: Color, month: string) => {
+  const changeSVGColor = (name: string, intensity: number, max: number, checked: boolean, color: Color, month: string) => {
+    console.log(max);
     const path = document.querySelector(`[name="${name}"]`)
     if(path != null) {
       if(checked) {
         path.style.fill = changeColorUntillAverge(path, color);
-        path.style.opacity = intensity/media
+        path.style.opacity = (intensity/max) * 10
         path.classList.add(month)
         return
       }
@@ -78,43 +78,42 @@ export function Controls() {
     switch(option) {
       case 'Sequías cíclicas':
         setCheckeds('sequia', checked);
-        sequiaCiclica.forEach(municipio => {
-          changeSVGClass(municipio, checked, color);
-        })
       break;
 
       case 'Municipios indemnizados':
         setCheckeds('indemnizados', checked);
-        municipios.forEach(({total, name}) => {
-          changeSVGColor(name, parseInt(total), 500, checked, color, 'indem');
-        })
       break;
 
-      case 'Datos de precipitación de Mayo':
-        setCheckeds('may', checked);
-        precipitaciones.forEach( ({name, may}) => {
-          changeSVGColor(name, may, getMedia(precipitaciones.map(({may}) => may)), checked, color, 'may')
-        })
-      break;
-
-      case 'Datos de precipitación de Junio':
-        setCheckeds('jun', checked);
-        precipitaciones.forEach( ({name, jun}) => {
-          changeSVGColor(name, jun, getMedia(precipitaciones.map(({jun}) => jun)), checked, color, 'jun')
-        })
-      break;
-
-      case 'Datos de precipitación de Julio':
-        setCheckeds('jul', checked);
-        precipitaciones.forEach( ({name, jul}) => {
-          changeSVGColor(name, jul, getMedia(precipitaciones.map(({jul}) => jul)), checked, color, 'jul')
-        })
+      case 'Datos de precipitación de Mayo, Junio y Julio':
+        setCheckeds('month', checked);
       break;
 
       default:
         // document.querySelectorAll('.selected').forEach(path => path.classList.remove('selected'))
     }
   }
+
+  createEffect(() => {
+    reset();
+    if(checkeds.sequia) {
+      sequiaCiclica.forEach(municipio => {
+        changeSVGClass(municipio, true, controls[0].color);
+      })
+    }
+
+    if(checkeds.indemnizados) {
+      municipios.forEach(({total, name}) => {
+        changeSVGColor(name, parseInt(total), 500, true, controls[1].color, 'indem');
+      })
+    }
+
+    if(checkeds.month) {
+      precipitaciones.forEach( ({name, may}) => {
+        changeSVGColor(name, may, getMedia(precipitaciones.map(({may, jul, jun}) => may + jul + jun)), true, controls[2].color, 'may')
+      })
+    }
+
+  })
 
 
   return (
