@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
-    "start": "solid-start start"
+    "start": "solid-start start",
+    "deploy": "gh-pages -d build"
   },
   "type": "module",
   "devDependencies": {
@@ -16,6 +17,7 @@
   "dependencies": {
     "@solidjs/meta": "^0.28.0",
     "@solidjs/router": "^0.4.2",
+    "gh-pages": "^4.0.0",
     "solid-js": "1.4.7",
     "solid-start": "0.1.0-alpha.99",
     "undici": "^5.8.0"

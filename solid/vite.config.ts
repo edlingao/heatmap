@@ -7,4 +7,5 @@ export default defineConfig({
     solid({ ssr: false }),
     solidSvg(),
   ],
+  base: '/heatmap/'
 });
